@@ -8,4 +8,4 @@ Foco(Focus):
 Técnologias(Technologies):
     Reconhecimento de voz(Voice recognition): (Google para reconhecimento online/Vosk para reconhecimento offline)
     Síntese de voz(voice synthesis): (pyttsx3)
-    Alguma IA(Artificial intelligence):
+    Alguma IA(Artificial intelligence)
