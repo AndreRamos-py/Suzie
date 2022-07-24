@@ -1,11 +1,11 @@
 # Suzie
- Minha Primeira Assistente Virtual
+ Minha Primeira Assistente Virtual(My First Virtual Assistant)
 
-Foco:
-    Facil de aprender.
-    Rápido e expansivel.
+Foco(Focus):
+    Facil de aprender.(Easy to learn)
+    Rápido e expansivel.(Fast and expandable)
 
-Técnologias:
-    Reconhecimento de voz: (Google para reconhecimento online Vosk para reconhecimento offline)
-    Síntese de voz.
-    Alguma IA.
+Técnologias(Technologies):
+    Reconhecimento de voz(Voice recognition): (Google para reconhecimento online/Vosk para reconhecimento offline)
+    Síntese de voz(voice synthesis): 
+    Alguma IA(Artificial intelligence):

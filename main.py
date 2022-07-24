@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 
-from pyexpat import model
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
+import pyttsx3
+import json
 
-from vosk import Model, KaldiRecognizer
-import os
-import pyaudio
+#----------Speech synthesis----------#
+
+engine = pyttsx3.init()
+
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[-2].id)
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+#----------Models----------#
 
 model = Model('model')
 rec = KaldiRecognizer(model, 16000)
@@ -17,12 +27,15 @@ stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, fram
 stream.start_stream()
 
 while True:
-    data = stream.read(4000)
+    data = stream.read(2000)
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
-        print(rec.Result())
-    else:
-        print(rec.PartialResult())
+        result = rec.Result()
+        result = json.loads(result)
+    
+        if result is not None:
+            text = result['text']
 
-print(rec.FinalResult())
+        print(text)
+        speak(text)
