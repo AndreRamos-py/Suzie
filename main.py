@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from multiprocessing.pool import TERMINATE
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
@@ -18,7 +17,7 @@ engine.setProperty('voice', voices[-2].id)
 def speak(text):
     engine.say(text)
     engine.runAndWait()
-
+    
 #-----Speech Recognition-----#
 
 model = Model('model')
