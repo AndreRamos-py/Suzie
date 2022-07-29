@@ -17,26 +17,9 @@ for command in data['commands']:
 
 #-----Process Text: Words, Characters, Bytes, SubWords
 
-chars = set()
 
-for input in inputs + outputs:
-    for ch in input:
-        if ch not in chars:
-            chars.add(ch)
+max_seq = max([len(bytes(x.encode('utf-8'))) for x in inputs])
 
-
-#-----Map char-idx-----#
-
-chr2idx = {}
-idx2chr = {}
-
-for i, ch in enumerate(chars):
-    chr2idx[ch] = i
-    idx2chr[i] = ch
-
-max_seq = max([len(x) for x in inputs])
-
-print('Número de chars:', len(chars))
 print('Maior seq:', max_seq)
 
 #-----Create the Dataset One-Hot (number of examples, length of sequence, number of characters)
@@ -44,19 +27,21 @@ print('Maior seq:', max_seq)
 
 #-----Input Data One-Hot Encoding-----#
 
-input_data = np.zeros((len(inputs), max_seq, len(chars)), dtype='int32')
+input_data = np.zeros((len(inputs), max_seq, 256), dtype='float32')
 
-for i, input in enumerate(inputs):
-    for k, ch in enumerate(input):
-        input_data[i, k, chr2idx[ch]] = 1.0
+for i, inp in enumerate(inputs):
+    for k, ch in enumerate(bytes(inp.encode('utf-8'))):
+        input_data[i, k, int(ch)] = 1.0
 
 #-----Input Data Sparse-----#
 
+'''
 input_data = np.zeros((len(inputs), max_seq), dtype='int32')
 
 for i, input in enumerate(inputs):
     for k, ch in enumerate(input):
         input_data[i, k] = chr2idx[ch]
+'''
 
 #-----Output Data-----#
 
@@ -80,8 +65,7 @@ output_data = to_categorical(output_data, len(output_data))
 print(output_data[0])
 
 model = Sequential()
-model.add(Embedding(len(chars), 64))
-model.add(LSTM(128, return_sequences=True))
+model.add(LSTM(128))
 model.add(Dense(len(output_data), activation='softmax'))
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
