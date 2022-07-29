@@ -70,7 +70,27 @@ model.add(Dense(len(output_data), activation='softmax'))
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
 
-model.fit(input_data, output_data, epochs=16)
+model.fit(input_data, output_data, epochs=128)
+
+#-----Sort text into a unit-----#
+
+def classify(text):
+    #Create an Input Array
+    x = np.zeros((1, 48, 256), dtype='float32')
+    
+    #Fill array with data from text
+    for k, ch in enumerate(bytes(text.encode('utf-8'))):
+        x[0, k, int(ch)] = 1.0
+
+    #Make the Forecast
+    out = model.predict(x)
+    idx = out.argmax()
+    print(idx2label[idx])
+
+while True:
+    text = input('Digite algo: ')
+    classify(text)
+
 
 
 
