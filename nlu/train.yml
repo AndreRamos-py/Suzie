@@ -5,7 +5,11 @@ commands:
     entity: time
     action: getTime
   - commmand:
-    input:  Me digas às horas.
+    input:  Me diga as horas.
+    entity: time
+    action: getTime
+  - commmand:
+    input:  Eu quero saber as horas.
     entity: time
     action: getTime
   # Date
