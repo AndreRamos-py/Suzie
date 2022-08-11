@@ -1,4 +1,5 @@
-weather\getWeather
-time\getDate
-time\getTime
-open\None
+open|notepad
+time|getDate
+time|getTime
+weather|getWeather
+open|microsoft edge

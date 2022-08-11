@@ -18,7 +18,30 @@ engine.setProperty('voice', voices[-2].id)
 def speak(text):
     engine.say(text)
     engine.runAndWait()
+
+def evaluate(text):
+    # Recognize Text Entity
+    entity = classify(text)
+    if entity == 'time|getTime':
+        speak(core.SystemInfo.get_time())
     
+    elif entity == 'time|getDate':
+        speak(core.SystemInfo.get_date)
+
+    #Open Programs
+    elif entity == 'open|notepad':
+        speak('Abrindo bloco de notas')
+        os.system('notepad.exe')
+    
+    elif entity == 'open|notepad':
+        speak('Abrindo bloco de notas')
+        os.system('notepad.exe')
+    elif entity == 'open|microsoft edge':
+        speak('Abrindo microsoft edge')
+        os.system('"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"')
+
+    print('Text: {} Entity: {}'.format(text, entity))
+            
 #-----Speech Recognition-----#
 
 model = Model('model')
@@ -40,15 +63,4 @@ while True:
     
         if result is not None:
             text = result['text']
-
-            # Recognize Text Entity
-            
-            entity = classify(text)
-
-            if entity == 'time\getTime':
-                speak(core.SystemInfo.get_time())
-            elif entity == 'time\getDate':
-                speak(core.SystemInfo.get_date)
-
-            print('Text: {} Entity: {}'.format(text, entity))
-            
+            evaluate(text)
