@@ -47,6 +47,8 @@ while True:
 
             if entity == 'time\getTime':
                 speak(core.SystemInfo.get_time())
+            elif entity == 'time\getDate':
+                speak(core.SystemInfo.get_date())
 
             print('Text: {} Entity: {}'.format(text, entity))
             
