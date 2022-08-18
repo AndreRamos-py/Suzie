@@ -10,4 +10,4 @@ Técnologias(Technologies):
     Síntese de voz(voice synthesis): (pyttsx3)
     Alguma IA(Artificial intelligence): Commands, NLU (Text Classification)
 
-Funções do Assistente(Assistant Functions): Abrir programas(Open programs)
+Funções do Assistente(Assistant Functions): Abrir programas e fechar programas(Open programs and close programs)/Informar data e hora(Inform date and time)

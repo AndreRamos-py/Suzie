@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from vosk import Model, KaldiRecognizer
-import os
+import psutil, os
 import pyaudio
 import pyttsx3
 import json
@@ -19,6 +19,11 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
+def close_program(name):
+    for process in (process for process in psutil.process_iter() if process.name()=='notepad.exe'):
+        process.kill()
+
+
 def evaluate(text):
     # Recognize Text Entity
     entity = classify(text)
@@ -26,7 +31,7 @@ def evaluate(text):
         speak(core.SystemInfo.get_time())
     
     elif entity == 'time|getDate':
-        speak(core.SystemInfo.get_date)
+        speak(core.SystemInfo.get_date())
 
     #Open Programs
     elif entity == 'open|notepad':
@@ -36,6 +41,7 @@ def evaluate(text):
     elif entity == 'open|notepad':
         speak('Abrindo bloco de notas')
         os.system('notepad.exe')
+    
     elif entity == 'open|microsoft edge':
         speak('Abrindo microsoft edge')
         os.system('"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"')
