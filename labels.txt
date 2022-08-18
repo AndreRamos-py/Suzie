@@ -1,6 +1,5 @@
-weather|getWeather
-close|notepad
+open|microsoft edge
 time|getTime
 open|notepad
 time|getDate
-open|microsoft edge
+weather|getWeather
